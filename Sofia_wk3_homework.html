@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bar Chart Scales and Load Data</title>
+        <script type="text/javascript" src= "https://d3js.org/d3.v6.js"></script>
+        <style type="text/css">
+        	h1 {
+              font-family: "Helvetica", "Arial", sans-serif;
+              font-size: 28px;
+              color: skyblue;
+            }
+
+            /*this is how we are styling the axes for BOTH charts*/
+            .axis path, 
+            .axis line{
+                stroke: midnightblue;
+            }
+
+            .axis text{
+                font-family: "Helvetica", "Arial", sans-serif; /*this is saying use Helvetica, if you can't, then use Arial, and if you can't then useu the browser's default sans-serif*/
+                font-size: 12px;
+                color: red;
+                }        
+        </style>
+    </head>
+    <body>
+    	<!--here we have two SVGs now, where we attributed an individual ID to each in order to call them later on-->
+    	<h1>Shenzhen Temperature in September </h1>
+
+        <script type="text/javascript">
+
+   
+        	 const margin = 50; //the margin to the boundry of canvas
+             const width = 500; 
+             const height = 500;
+
+             const dataset = [ 
+                             {"day": "12", "Temperature": "79"},
+                             {"day": "13", "Temperature": "70"},
+                             {"day": "14", "Temperature": "85"},
+                             {"day": "15", "Temperature": "82"},
+                             {"day": "16", "Temperature": "90"},
+                             {"day": "17", "Temperature": "88"},
+                             {"day": "18", "Temperature": "85"}   
+                            ];
+
+             const maxY = d3.max(dataset, d =>d.Temperature);
+             
+             const xScale =d3.scaleBand()
+             					.domain(dataset.map(d => +d.day))
+             					.range([margin,width - margin])
+             					.paddingInner(.05);
+
+             const yScale = d3.scaleLinear()
+                                .domain([0, maxY]) 
+                                .range([height - margin, margin]);
+                
+                const bottomAxis = d3.axisBottom()
+                                     .scale(xScale);
+                const leftAxis = d3.axisLeft()
+                                   .scale(yScale);
+
+                
+                //Create our SVG element
+               const svg = d3.select("body")
+                            .append("svg")
+                            .attr("width", width)
+                            .attr("height", height);
+
+                //Make bars and append data
+                svg.selectAll("rect") 
+                    .data(dataset) 
+                    .enter()
+                    .append("rect")
+                    .attr("x", d => xScale(d.day)) //use scaled x and the data we want
+                    .attr("y", d => yScale(+d.Temperature)) //use scaled y and the data we want
+                    .attr("width", xScale.bandwidth()) //width of bars 
+                    .attr("height", d => (height-margin) - yScale(+d.Temperature))
+                    .attr("fill", "green");
+
+                // //Implement bottom axis
+                svg.append("g")
+                    .attr("transform", "translate(0," + (height - margin) + ")") 
+                    .call(bottomAxis); 
+
+
+                // //Implement left axis
+                 svg.append("g")
+                     .attr("transform", "translate(" + margin + ",0)")
+                     .call(leftAxis); 
+                 
+                 svg.append("text")
+    				.attr("class", "x label")
+   					 .attr("text-anchor", "end")
+   					 .attr("x", width)
+   					 .attr("y", height - 6)
+  					  .text("September")
+
+  				 svg.append("text")
+  				 	.attr("class", "y label")
+  				 	.attr("text-anchor","end")
+  				 	.attr("x", 100)
+  				 	.attr("y",30)
+  				 	.text("Farenheit")
+
+            
+        </script>
+    </body>
+</html>
+
+             
+  
