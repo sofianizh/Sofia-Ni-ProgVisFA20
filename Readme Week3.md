@@ -1,4 +1,8 @@
+Week 3 Homework
+===============
 
-The code is the weather of Shenzhen in one week of Sepetember. 
+Scales and Axes
+---------------
 
-And the screenshot shows how the results like.
+The attached visualization is a bar schart that shows the weather in farenheit, per day for a week in sepetember, of emails that I have recieved. I used a bandscale and a linear scale. The data is self-sourced, as this is a personal quantitative self project.  
+
