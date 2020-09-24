@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>VT Mountain Data Example</title>
+        <script src= "https://d3js.org/d3.v6.js"></script>
+        <style type="text/css"> 
+          svg{
+            width:800px;
+            height:800px;
+          }
+
+          .title {
+            font-size: 16px;
+            font-weight: bold;
+            font-family: helvetica;
+          }
+
+          .labels{
+            font-size: 14px;
+            font-weight: normal;
+            font-family: sans-serif;
+          }
+
+            
+        
+        </style>
+    </head>
+    <body>
+         <svg></svg> <!--Remember to add the svg here like this if you are applying it above-->
+
+        <script type="text/javascript">
+        
+
+
+    //Create data
+        const dataset = d3.csv("temp.csv").then (dataset =>{
+            console.log(dataset);
+        
+     
+
+
+        //Color using linear scale, d3 min and max
+        const maxData = d3.max(dataset, d=>+d.temperature);
+        const minData = d3.min(dataset, d=>+d.temperature);
+        const myColor = d3.scaleLinear()
+            .domain([minData, maxData])
+            .range(["#fee5d9", "#a50f15"]);//lightest and darkest green from ColorBrewer "Greens"
+
+
+        //Drawn with d3.line()
+        const starGenerator = d3.line();
+
+
+        //To draw the lines we are using an array to capture the path points. D3 uses the [x,y] of the array as x y for the path.
+        //The original path points for our mountain drawing: "M60, 10 L95,95 L5,95 L30,50 L35,60 L44,35 L50,50 L60,10"
+        const star_points = [
+            [70,15],//This is the M point. The rest are Ls.
+            [80,30],
+            [100,40],
+            [80,50],
+            [70,65],
+            [60,50],
+            [40,40],
+            [60,30]
+        ];
+
+        const pathString = starGenerator(star_points);
+        const row = dataset.length; //in class we changed this to 3 to see what happens
+        const size = 100;
+        const sizeY =110;//we added this for when changed row to 3
+
+        const svg = d3.select("svg");
+
+        //making groups
+        const g = svg.selectAll("g")
+            .data(dataset, d=>d)
+            .enter()
+            .append("g")
+            .attr("transform", (d,i)=>{
+                const x = (i % row +1) * size;
+                const y = (Math.floor(i/row)+.55) * sizeY;
+                return 'translate(' + [x,y] + ')';})
+            .attr("fill", d=> myColor(+d.temperature))
+            //.attr("stroke", "#00441b")
+            //.attr("stroke-width", "1px");
+
+        g.append("path")
+            .attr("d", pathString);
+
+        //Make Labels
+        g.append("text")
+            .attr("x", size/2+20) //x coordinate
+            .attr("y", size + 5) //y coordinate
+            .attr("text-anchor", "middle") //horizontal text alignment
+            .attr("dy", "5px") //y coordinate offset
+            .attr("class","labels")
+            .text(d=>d.weekday); //the text
+
+        //Note the difference between svg.append text and g.append in this example.
+        svg.append("text")
+            .attr("x", 440) //x coordinate
+            .attr("y", 40) //y coordinate
+            .attr("text-anchor", "middle") //horizontal text alignment
+            .attr("fill", "#a50f15")
+            .attr("class", "title")
+            .text("The Temperature of the Last Week of September in Shenzhen");
+
+        });//the text
+
+        </script>
+    </body>
+</html>
