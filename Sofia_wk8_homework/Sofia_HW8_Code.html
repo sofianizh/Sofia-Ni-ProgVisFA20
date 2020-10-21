@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Pie and Doughnut</title>
+        <script type="text/javascript" src= "https://d3js.org/d3.v6.js"></script>
+        <style type="text/css">
+
+        	.labels{
+            font-size: 14px;
+            font-weight: normal;
+            font-family: sans-serif;
+          }
+          #tooltip{
+            position: absolute;
+            width: 70px;
+            height: 30px;
+            padding: 2px;    
+            text-align: center; 
+            font-family:sans-serif;
+            font-size: 12px;
+            font-weight: 550;
+            background: powderblue; 
+            border-radius: 8px;
+          }
+			</style>
+		</head>
+
+		<body>
+			<svg width="600" height="600"></svg> 
+        	<script type="text/javascript">
+
+        const data = d3.csv("nutrition.csv").then (dataset =>{
+            console.log(dataset);
+
+			//create the artboard
+			  const svg = d3.select('svg');
+    		const w=60;
+
+    		const outerRadius = 200;
+            const innerRadius = 100;
+
+            const arcs = d3.arc()  
+                           .innerRadius(innerRadius)//required 
+                           .outerRadius(outerRadius)
+   				 
+
+   			//set the pie chart radius
+			//const radius = 200;
+			//const g = svg.append('g')
+					//.attr('transform', `translate(${width/2}, ${height/2})`);
+
+			//const label = d3.arc()
+						//.outerRadius(radius)
+						//.innerRadius(radius - 90);
+
+			//set the pie chart color
+			const color = d3.scaleOrdinal(d3.schemePastel1);
+
+			//create the pie chart
+			const pie = d3.pie()
+						//.sort(null)
+						.value(d => d.value);
+
+			//make a donut
+			//const path = d3.arc()
+						//.outerRadius(radius)
+						//.innerRadius(100);
+
+			
+
+			//const pies = g.selectAll('.arc')
+						//.data(pie(data))
+						//.enter()
+						//.append('g')
+						//.attr('class', 'arc');
+						const tooltip =d3.select("body")
+                        	 .append("div")
+                        	 .attr("id", "tooltip")
+                        	 .style("opacity", 50);
+
+						const groups = svg.selectAll("g.arc")
+                              .data(pie(dataset))//give data to our pie generator
+                              .enter()
+                              .append("g")
+                              .attr("class", "arc")
+                              .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")")
+
+                             // console.log(groups)
+
+                              .on("mouseover", (event,d)=>{
+                                d3.select ("#tooltip")
+                                .transition()
+                                .duration(300)
+                                .style("opacity", 1)
+                                .style("left", (event.clientX + 2) + "px")
+                               .style("top", (event.clientY + 2) + "px")
+                               .text(d.data.name+ " " +d.data.value+ "g");
+                           		})
+
+                              .on("mouseout",(event, d)=>{
+                              	d3.select("#tooltip")
+                              	.transition()
+                              	.style("opacity",0);
+                            	})
+                            
+                          	  .on("mousemove", (event, d) =>{
+                          	 	d3.select("#tooltip")
+                          	 	.style("left", (event.pageX + 2) + "px")
+                          	 	.style("top", (event.pageY + 2) + "px")
+                         		})
+
+
+
+						groups.append('path')
+							.attr('fill', d => color(d.data.value))
+							.attr('d', arcs)
+              .style('stroke', 'white')
+              .style('stroke-width', 5);
+
+						groups.append("text")
+                 	   		 .attr("transform", d=> "translate(" + arcs.centroid(d) + ")")
+                			 .attr("text-anchor", "middle")
+                 			 .attr("class", "labels")
+                 			 .text(d=>d.data.name);
+
+                 		groups.append("text")
+                 		 .attr("text-anchor", "middle")
+                 		 .attr("text-align","center")
+                 		 .attr("font-family","sans-serif")
+                 		 .attr("font-size","14px")
+                  		.attr('y', 10)
+                 		 .text('Nutrition Fact of Donut')
+
+                  })
+
+
+
+  			</script>
+  		</body>
+  	</html>
