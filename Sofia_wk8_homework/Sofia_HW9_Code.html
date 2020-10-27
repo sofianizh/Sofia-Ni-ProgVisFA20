@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Week 9 Homework Force</title>
+    <script type="text/javascript" src= "https://d3js.org/d3.v6.js"></script>
+    <style type="text/css">
+
+        text {
+            font: 10px sans-serif;
+            pointer-events: none;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<svg width="1000" height="1000"></svg>
+<script type="text/javascript">
+
+
+
+
+
+   // //create an SVG
+   const svg = d3.select("svg");
+   const width = 1000;
+   const height= 1000;
+   // svg.attr("width",1000).attr("height",1000);
+
+
+    //Color scheme
+    const myColor = d3.scaleOrdinal(d3.schemeTableau10);
+
+
+    //Load Json file
+    const data = d3.json("miserables.json").then((data)=>{
+
+        console.log(data)
+
+        const simulation = d3.forceSimulation(data.nodes)
+            .force("charge", d3.forceManyBody().strength(-100))
+            .force("link", d3.forceLink(data.links).id((d) => d.id))
+            .force("center", d3.forceCenter().x(width/2).y(height/2));
+
+        const links = svg.selectAll("line")
+            .data(data.links)
+            .join("line")
+            .style("stroke","grey")
+            .style("stroke-width", 0.5);
+
+        console.log(links)
+
+        const g = svg.selectAll("g").data(data.nodes).join("g") 
+
+    // const nodes = svg.selectAll("circle")
+    //         .data(data.nodes)
+    //         .join("circle")
+    //         .attr("r", 7)
+    //         .attr("stroke", "#fff")
+    //         .attr("stroke-width", 1)
+    //         .style("fill", (d,i)=>myColor(i))
+    //         .call(d3.drag()
+    //             .on("start", dragstarted)
+    //             .on("drag", dragged)
+    //             .on("end", dragended));
+        g.append("circle").data(data.nodes)
+            .attr("r", 7)
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 2)
+            .style("fill", (d,i)=>myColor(i))
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+       
+        g.append("text")
+            .attr("dx", 12)
+            .attr("dy", ".35em")
+            //.attr("transform", d=> "translate(" + arcs.centroid(d) + ")")
+            // .attr("text-anchor", "middle")
+            //.attr("class", "labels")
+            .text(d=>d.id);
+
+
+        simulation.on('tick',(event,d)=>{
+            links.attr("x1", d=>d.source.x)
+                .attr("y1", d=>d.source.y)
+                .attr("x2", d=>d.target.x)
+                .attr("y2", d=>d.target.y);
+
+            g.attr("transform", d=> "translate(" + d.x + "," + d.y + ")");
+
+        });
+
+        function dragstarted(event) {
+            if (!event.active) simulation.alphaTarget(0.4).restart();
+            event.subject.fx = event.subject.x;
+            event.subject.fy = event.subject.y;
+        }
+
+        function dragged(event) {
+            event.subject.fx = event.x;
+            event.subject.fy = event.y;
+        }
+
+        function dragended(event) {
+            if (!event.active) simulation.alphaTarget(0);
+            event.subject.fx = null;
+            event.subject.fy = null;
+        }
+
+
+
+    })
+
+</script>
+</body>
+</html>
