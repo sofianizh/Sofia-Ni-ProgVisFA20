@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<style>
+  /* set the CSS */
+
+  body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #CFB49A;
+  }
+
+  h1{
+    color:white;
+    font:36px sans-serif;
+  }
+  p{
+    font:18px sans-serif;
+    color:white;
+  }
+
+  .node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 3px;
+  }
+
+  .node text {
+    font: 16px sans-serif;
+    color:white;
+    position: relative;
+  }
+
+  .node--internal text {
+    text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+  }
+
+  .link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 4px;
+  }
+
+  #tooltip {
+    position: absolute;
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 100, 100, 0.4);
+    pointer-events: none;
+  }
+
+  #tooltip.hidden {
+    display: none;
+  }
+
+  #tooltip p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  #tooltip .des {
+    color: rgb(52, 143, 218);
+  }
+</style>
+
+<body>
+
+  <h1 id='title'>Chinese Mythological Figures Relationship Map</h1>
+    <p id='description'>The map is showing the relationships among major Chinese mythological figures</p>
+     <p id='description'>The color is showing how the throne/leadership was pssed in different tribe</p>
+  <!-- load the d3.js library -->
+  <script src="https://d3js.org/d3.v6.js"></script>
+  <script>
+    d3.json('./treedata.json').then(data => {
+      loadTree(data);
+    });
+    function loadTree(treeData) {
+      // set the dimensions and margins of the diagram
+      var margin = { top: 20, right: 150, bottom: 30, left: 90 },
+        width = 1500 - margin.left - margin.right,
+        height = 1000 - margin.top - margin.bottom;
+
+      // declares a tree layout and assigns the size
+      var treemap = d3.tree().size([height, width]);
+
+      //  assigns the data to a hierarchy using parent-child relationships
+      var nodes = d3.hierarchy(treeData, function (d) {
+        return d.children;
+      });
+
+      var pathD = function (d) {
+        return (
+          'M' +
+          d.y +
+          ',' +
+          d.x +
+          'C' +
+          (d.y + d.parent.y) / 2 +
+          ',' +
+          d.x +
+          ' ' +
+          (d.y + d.parent.y) / 2 +
+          ',' +
+          d.parent.x +
+          ' ' +
+          d.parent.y +
+          ',' +
+          d.parent.x
+        );
+      };
+
+      // maps the node data to the tree layout
+      nodes = treemap(nodes);
+
+      const svg = d3
+        .select('body')
+        .append('svg')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom),
+        g = svg
+          .append('g')
+          .attr('transform','translate(' + margin.left + ',' + margin.top + ')');
+
+      // adds the links between the nodes
+      const links = g
+        .selectAll('.link')
+        .data(nodes.descendants().slice(1))
+        .enter()
+        .append('path')
+        .attr('class', 'link')
+        .style('stroke', function (d) {
+          return d.data.level;
+        })
+        .attr('d', pathD);
+
+      const tooltip = d3
+        .select('body')
+        .append('div')
+        .attr('id', 'tooltip')
+        .style('opacity', 50);
+
+      // adds each node as a group
+      var node = g
+        .selectAll('.node')
+        .data(nodes.descendants())
+        .enter()
+        .append('g')
+        .attr('class', function (d) {
+          return 'node' + (d.children ? ' node--internal' : ' node--leaf');
+        })
+        .attr('transform', function (d) {
+          return 'translate(' + d.y + ',' + d.x + ')';
+        });
+
+      updateImageAndText(node);
+
+      function nodeClick(d) {
+        if (d.children) {
+          d._children = d.children;
+          d.children = null;
+        } else {
+          d.children = d._children;
+          d._children = null;
+        }
+        update(d);
+      }
+
+      function update(source) {
+        var updateNodes = nodes.descendants();
+        var updatelinks = updateNodes.slice(1);
+        g.selectAll('g.node').remove();
+        var node = g.selectAll('g.node').data(updateNodes, function (d, i) {
+          return d;
+        });
+
+        var link = g.selectAll('path.link').data(updatelinks, function (d) {
+          return d;
+        });
+        link.exit().remove();
+        link
+          .enter()
+          .append('path')
+          .attr('class', 'link')
+          .style('stroke', function (d) {
+            return d.data.level;
+          })
+          .attr('d', pathD);
+
+        nodeEnter = node
+          .enter()
+          .append('g')
+          .attr('class', function (d) {
+            return 'node' + (d.children ? ' node--internal' : ' node--leaf');
+          })
+          .attr('transform', function (d) {
+            return 'translate(' + d.y + ',' + d.x + ')';
+          });
+
+        updateImageAndText(nodeEnter);
+      }
+
+      function updateImageAndText(node) {
+        node
+          .append('image')
+          .attr('xlink:href', function (d) {
+            return d.data.icon || '';
+          })
+          .attr('x', '-20px')
+          .attr('y', '-12px')
+          .attr('width', '60px')
+          .attr('height', '60px')
+          .on('mouseover', (event, d) => {
+            d3.select('#tooltip')
+              .html(`${d.data.name} </br>${d.data.chi} </br><div class="des">${d.data.des}</div>`)
+              .transition()
+              .duration(300)
+              .style('opacity', 1)
+              .style('left', event.pageX + 2 + 'px')
+              .attr('width','100px')
+              .attr('height','100px')
+              .style('top', event.pageY + 2 + 'px');
+
+          })
+          .on('mouseout', (event, d) => {
+            d3.select('#tooltip').transition().style('opacity', 0);
+          })
+          .on('mousemove', (event, d) => {
+            d3.select('#tooltip')
+              .style('left', event.pageX + 2 + 'px')
+              .style('top', event.pageY + 2 + 'px');
+          })
+          .on('click', (event, d) => {
+            nodeClick(d);
+          });
+
+        node
+          .append('text')
+          .attr('dy', '.35em')
+          .attr('x', function (d) {
+            return d.children ? -25 : 40;
+          })
+          .style('text-anchor', function (d) {
+            return d.children ? 'end' : 'start';
+          })
+          .text(function (d) {
+            return d.data.name;
+          });
+      }
+    }
+  </script>
+</body>

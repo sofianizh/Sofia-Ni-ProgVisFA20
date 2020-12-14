@@ -1,0 +1,258 @@
+{
+  "name": "Pangu",
+  "chi": "盘古",
+  "value": 10,
+  "type": "black",
+  "level": "red",
+  "icon": "https://www.mitologia.info/wp-content/uploads/2018/01/Creaciones-de-Pangu.jpg",
+  "des": "In the beginning, there was nothing and the universe was in a nondual, featureless, formless primordial state.This primordial state coalesced into a cosmic egg for about 18,000 years. Pangu emerged (or woke up) from the egg. He began creating the world: he separated sky from earth with a swing of his giant axe.",
+  "children": [
+    {
+      "name": "Nuwa",
+      "chi": "女娲",
+      "value": 5,
+      "type": "grey",
+      "level": "#F87664",
+      "icon": "https://img2.gushi365.com/img2/g2017/nwbt.jpg",
+      "des": "Nüwa is the mother goddess of Chinese mythology. Her face is human but body is snake. She is Wife and Sister of Fuxi. She is emerged from Pangu's last breath. She is credited with creating humanity and repairing the Pillar of Heaven.",
+      "children": [
+        {
+          "name": "Huang Di",
+          "chi": "黄帝",
+          "value": 5,
+          "type": "steelblue",
+          "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Yellowemperor.jpg",
+          "level": "#F87664",
+          "des": "From 2711-2598 BCE. He is one of the first Emperors and rulers of ancient China, also he is the god of thunder and human",
+          "children": [
+            {
+              "name":"Shao Hao",
+              "chi":"少昊",
+              "type": "steelblue",
+              "icon": "http://www.dengdachu.com/zb_users/upload/2019/12/201912101575944978184057.png",
+              "des": "From 2422-2322 BCE. He is the eldest son of Huang Di",
+              "children":[
+                {
+                  "name":"Jiao Ji",
+                  "chi":"蟜极",
+                  "type": "steelblue",
+                  "icon": "https://i1.kknews.cc/SIG=1ojfel3/ctp-vzntr/q1o897628rp94npon58o9qqq48o0p196.jpg",
+                  "des": " Jiao Ji is the eldest son of Shao Hao. During the Ancienct time, flooding is a big problem for people daily living, he invented the first 'bridge' in ancient China Period",
+                  "children":[
+                    {
+                      "name":"Di Ku",
+                      "chi":"帝喾",
+                      "type": "steelblue",
+                      "level": "#EF574E",
+                     "icon": "http://5b0988e595225.cdn.sohucs.com/images/20180715/af79441507e24003ae36a90d453ba029.jpeg",
+                    "des": " Di Ku was son of Jiao Ji. After Zhuan Xu(颛顼) died, he passed the throne to Di Ku and Di Ku became the new leader of the tribe. In he regin, he invented Chinese Canlendar and 24 Solar Terms",
+                    "children":[
+                      {
+                        "name": "Yao",
+                         "chi": "尧",
+                          "value": 18,
+                         "type": "steelblue",
+                         "level": "#EF574E",
+                          "icon": "https://upload.wikimedia.org/wikipedia/commons/c/cb/EmperorYao.jpg",
+                          "des": "From 2324-2234 BCE. He is the first human Emperor and the creator of the first dynasty,Shang Dynasty, of ancient China.",
+                          "children":[
+                            {
+                              "name":"Shun",
+                              "chi":"舜",
+                              "value": 18,
+                               "type": "steelblue",
+                              "level": "#EF574E",
+                              "icon": "https://img2.secretchina.com/pic/2017/4-25/p1603911a163693483-ss.jpg",
+                              "des": "Shun is not son of Yao. Because he had outstanding talent, Yao (尧) passed his throne to him.",
+                              "children":[
+                                {
+                                "name":"Yu",
+                                "chi":"禹",
+                                "value": 18,
+                                 "type": "steelblue",
+                                "level": "#EF574E",
+                                 "icon": "https://i2.kknews.cc/SIG=fbq0io/17s0000788r912oorp1p.jpg",
+                                 "des": "Shun is not son of Shun either. Because he managed the flooding, Shun passed his trhone to him. Yu then build the first dynasty, Xia Dynasty, in Chinese History.",
+                                 "children":[
+                                  {
+                                    "name":"Xia Dynasty",
+                                    "chi":"夏朝",
+                                     "type": "steelblue",
+                                    "level": "#EF574E",
+                                    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Region_of_xia.svg/1280px-Region_of_xia.svg.png",
+                                    "des": "First Dynasty and the start point of Chinese History."
+
+                                  }]
+                                }]
+                            }]
+                      }
+                    ]
+
+                    }
+                  ]
+                },
+                {
+                  "name":"Zhang Hui",
+                  "chi":"张挥",
+                  "type": "steelblue",
+                  "icon": "https://img.laonanren.com/upload2/2016-11/16110414405407.jpg",
+                  "des": " Zhang Hui is the younger son of Shao Hao. He was in charge of the munitions and then he invented the first bow and arrow."
+
+                }
+
+              ]
+            },
+            {
+             "name":"Chang Yi",
+              "chi":"昌意",
+              "type": "steelblue",
+              "icon": "https://pic.baike.soso.com/ugc/baikepic2/0/20161028063312-865209640.jpg/800",
+              "des": "Change Yi is the second son of Huang Di. He was assigned by Huang Di to manage the northern part of China", 
+              "children":[
+                {
+                  "name":"Zhuan Xu",
+                  "chi":"顓頊",
+                  "type": "steelblue",
+                  "level": "#EF574E",
+                  "icon": "https://upload.wikimedia.org/wikipedia/commons/2/21/EmperorZhuanxu.jpg",
+                  "des": " Zhuan Xu is son of Chang Yi. After Huang Di died, he beat the Gong Gong's tribe and became the new leader."
+                }]
+            },
+            {
+              "name":"Yu Guo",
+              "chi":"禺虢",
+              "type":"steelblue",
+              "icon": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Guanyu-1.jpg",
+              "des": "Yu Guo is the son of Huang Di(黄帝), he had human's head, bird's body, and snake tail as his feet. He is the god of the northern sea and also offical of Zhuan Xu(颛顼)."
+
+            }
+          ]
+        },
+        {
+          "name": "Yan Di",
+          "chi": "炎帝",
+          "value": 18,
+          "type": "steelblue",
+          "level": "#F87664",
+          "icon": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Shennong3.jpg",
+          "des":"He is the Emperor and ruler of south-east part of ancient China in pre-dynasty period. He is also known as the god of fire and argriculture. He taught human how to make fire and save it, and he taught human how to farm the land.",
+          "children": [
+            {
+              "name": "Zhu Rong",
+              "chi": "祝融",
+              "value": 18,
+              "type": "steelblue",
+              "icon": "https://upload.wikimedia.org/wikipedia/commons/6/63/Classic_of_Mountains_and_Seas%2C_1597%2C_plate_XXV_%28detail%29.jpg",
+              "des": "Zhu Rong is the eldest son of Yan Di and he was born in a river.",
+              "level": "orange",
+              "children":[
+                {
+                   "name": "Gong Gong",
+                    "chi": "共工",
+                    "value": 18,
+                    "type": "steelblue",
+                    "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsrwEB8ZPeUyOe3SeLlCHkRrMrL8_GUCRQyg&usqp=CAU",
+                    "level": "orange",
+                    "des": "Gonggong is the son of Zhu Rong, grandson of Yandi. There was a great flood in Yandi's ruling period, and he was assigned to manage to the flood. Unfortunately, Gonggong was murdered by his official- a monster with 9 heads, who is the initiator of the flood. After he died, his power was awakend and transformed to the God of eastern sea.",
+                    "children":[
+                      {
+                        "name":"Ju Long",
+                        "chi":"句龙",
+                        "value": 18,
+                        "type": "steelblue",
+                        "icon": "http://image.uc.cn/s/wemedia/s/upload/2020/0e56a455c84e24dc22ddf76b1d1f75fc.png",
+                        "level": "orange",
+                        "des": "Ju Long is the son of Gong Gong. after Gong Gong was beaten by Zhuan Xu(颛顼), he was assigned to manage the land, farming and river. In the later time, he was worshipped as God of land."
+                      }] 
+                },
+                {
+                  "name":"Shu Qi",
+                  "chi":"术器",
+                  "value": 18,
+                  "type": "steelblue",
+                  "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsrwEB8ZPeUyOe3SeLlCHkRrMrL8_GUCRQyg&usqp=CAU",
+                  "des": "Shu Qi is the youngest son of Gong Gong. He was born wiht great capability of managing the water, however, he has no interest in becoming the god of sea. All he like is playing around with sound, so he invented the first music instrumnt of ancient China."
+
+                }
+
+              ] 
+            },
+            {
+              "name":"Yao Ji",
+              "chi":"瑶姬",
+              "type": "steelblue",
+              
+              "icon": "http://i.qulishi.com/uploads/yszt/201703/15/60/58ddd333bd876.jpg",
+              "des": "She is the third daughter of Yan Di, elder sister of Jing Wei. She is known by her bewauty. However she died when she was a teenager, and transformed to a grass called ‘Yao(瑶)’ on Mountain Wu(巫山）， then she reborn from the grass and became the goddess of Mountain Wu- one of the famous mountains in China. " 
+            },
+            {
+              "name": "Jing Wei",
+              "chi": "精衛",
+              "value": 18,
+              "type": "steelblue",
+              "icon": "https://upload.wikimedia.org/wikipedia/commons/6/63/Classic_of_Mountains_and_Seas%2C_1597%2C_plate_XXV_%28detail%29.jpg",
+              "des": "She is the youngest daughter of Yan di and successor of the tribe. She was drawned when she was swiming in the Eastern sea then she transformed to the bird Spirit-Guardian and regularly carries twigs and stones from the Western Mountains to fill up the Eastern Sea."
+              
+            },
+            {
+              "name": "Giant Xing Tian ",
+              "chi": "刑天",
+              "value": 18,
+              "type": "steelblue",
+              "icon": "https://i1.kknews.cc/SIG=2g2hend/3rpp0001q88828n6o94q.jpg",
+              "des": " Xing Tian was son of Yan Di and official in Yan Di's court. He fought against Huang Di for the position of supreme god, but he lost tht conflict. he was beheaded and his head buried in Changyang Mountain. Nevertheless, headless, with a shield in one hand and a battle axe in the other, he continues the fight, using his nipples as eyes and his bellybutton as a mouth. "
+              
+            }
+          ]
+        },
+        {
+          "name": "Chi You",
+          "chi":"蚩尤",
+          "value": 20,
+          "type": "steelblue",
+          "icon": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Chi_You.gif",
+          "des": "He is son of Zhu long and cousine of Nuwa and Fuxi. He is known as the God of war and the first Emperor and ruler of northern part of ancient Chinese in pre-dynasty period. He was killed by Huang di and Yan di in Battle of Zhuolu(涿鹿之战）.",
+          "level": "#F87664"
+          
+        }
+      ]
+    },
+    {
+      "name": "Fu Xi",
+      "chi": "伏羲",
+      "value": 10,
+      "type": "grey",
+      "icon": "https://images1.epochhk.com/pictures/50010/b3-1@1200x1200.jpg",
+      "des": "He is bron from Pangu's last breath and he is Nuwa's husband and elder brother. His face is human but body is snake as well. He created the humanity and the invention of fishing, domestication, cooking, writing system together with his sister.",
+      "level": "#F87664"
+    },
+    {
+      "name": "Zhu Long",
+      "chi": "烛龙",
+      "value": 10,
+      "type": "grey",
+      "icon": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Shan_hai_jing_Zhuyin.jpg",
+      "des": "He is a giant red solar dragon with human head but dragon's body, and he is the god of dark in Chinese mythology. He is brother of Pangu after he separted the sky and earther. Zhu long was emerged from the sky at night, and he was the most powerful dragon in ancient China. After he died, his right eye became sun, his left eye became moon.",
+      "level": "#5D28CC",
+      "children": [
+        {
+          "name": "Gu",
+          "chi": "鼓",
+          "value": 5,
+          "type": "yellow",
+          "icon": "https://i1.kknews.cc/SIG=2rktva2/288600036p0noqp38q3q.jpg",
+          "level": "#5D28CC",
+          "des": "Gu is the only son of Zhu Long. He has bird's head but human's body. Although his father is the most powerful dragon, he only has a little power. He is considered the weakest one in the mythology. Because he is too weak, his father doesn't like him which makes him become an evil dragon in the end and killed by his sibling."
+        }
+      ]
+    },
+    {
+      "name":"Lei",
+      "chi":"雷",      
+      "type": "yellow",
+      "level":"#2097F6",
+      "icon": "https://i.pinimg.com/564x/94/f5/15/94f5153e6cfbe1f3004c2f43a6a860b0.jpg",
+      "des":" Lei (雷）is worshipped as god of thunder or god of rain. He lived in a place called 'lei ze(雷泽)' where human cannot enter."
+    }
+  ]
+}
